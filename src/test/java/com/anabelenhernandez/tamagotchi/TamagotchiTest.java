@@ -1,39 +1,49 @@
 package com.anabelenhernandez.tamagotchi;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class TamagotchiTest {
 
+    private Tamagotchi tamagotchi;
+
+    @BeforeEach
+    public void setUp() {
+        tamagotchi = new Tamagotchi("Tamagothi");
+    }
+
+    @Test
+    public void testInicial() {
+        assertEquals(5, tamagotchi.getHambre());
+        assertEquals(5, tamagotchi.getFelicidad());
+        assertEquals(5, tamagotchi.getEnergia());
+    }
+
     @Test
     public void testAlimentar() {
-        Tamagotchi tamagotchi = new Tamagotchi("Tama");
         tamagotchi.alimentar();
-        assertEquals(3, tamagotchi.getHambre());
+        assertEquals(4, tamagotchi.getHambre());
     }
 
     @Test
     public void testJugar() {
-        Tamagotchi tamagotchi = new Tamagotchi("Tama");
         tamagotchi.jugar();
-        assertEquals(6, tamagotchi.getHambre());
         assertEquals(6, tamagotchi.getFelicidad());
         assertEquals(4, tamagotchi.getEnergia());
     }
 
     @Test
     public void testDormir() {
-        Tamagotchi tamagotchi = new Tamagotchi("Tama");
         tamagotchi.dormir();
         assertEquals(7, tamagotchi.getEnergia());
     }
 
     @Test
     public void testPasarTiempo() {
-        Tamagotchi tamagotchi = new Tamagotchi("Tama");
         tamagotchi.pasarTiempo();
         assertEquals(6, tamagotchi.getHambre());
-        assertEquals(4, tamagotchi.getEnergia());
         assertEquals(4, tamagotchi.getFelicidad());
+        assertEquals(4, tamagotchi.getEnergia());
     }
 }
